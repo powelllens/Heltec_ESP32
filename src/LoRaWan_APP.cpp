@@ -36,6 +36,9 @@ RTC_DATA_ATTR int8_t defaultDrForNoAdr = 3;
 RTC_DATA_ATTR int8_t defaultDrForNoAdr = 5;
 #endif
 
+#ifndef LoRaWAN_DEBUG_LEVEL
+#define LoRaWAN_DEBUG_LEVEL 0
+#endif
 
 RTC_DATA_ATTR uint8_t debugLevel=LoRaWAN_DEBUG_LEVEL;
 
@@ -658,6 +661,14 @@ void LoRaWanClass::cycle(uint32_t dutyCycle)
 	TimerSetValue( &TxNextPacketTimer, dutyCycle );
 	TimerStart( &TxNextPacketTimer );
 }
+
+#ifndef HELTEC_BOARD
+#define HELTEC_BOARD 0
+#endif
+
+#ifndef SLOW_CLK_TPYE
+#define SLOW_CLK_TPYE 0
+#endif
 
 void LoRaWanClass::sleep(DeviceClass_t classMode)
 {

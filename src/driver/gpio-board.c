@@ -51,6 +51,10 @@ void GpioMcuRemoveInterrupt( Gpio_t *obj )
 	detachInterrupt(obj->pin);
 }
 
+#ifndef RADIO_NSS
+#define RADIO_NSS 0
+#endif
+
 void GpioMcuWrite( Gpio_t *obj, uint32_t value )
 {
 	if(obj->pin==RADIO_NSS && radio_nss_inited==false)
